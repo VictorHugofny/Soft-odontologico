@@ -5,45 +5,46 @@ import { useEffect, useState} from 'react';
 import { toast } from "react-toastify";
 
 export default function UserList() {
-  let users = [];
-  const [user, setUser] = useState([]);
+  const [payments, setPayments] = useState([]);
 
-  async function buscarUsuario(){
-    const response = await api.get("/users").then((response) => {
-      response.data.users.forEach(user => {
-        users.push({
-          id: user.id, name: user.name, email: user.email
+  async function buscarPagamentos(){
+    const response = await api.get("/payments").then((response) => {
+      console.log(response.data)
+      let paymentArray = [];
+
+      response.data.paymentData.forEach(payment => {
+        paymentArray.push({
+          id: payment.id, 
+          name: payment.user.name, 
+          totalValue: payment.totalValue,
+          entryValue: payment.entryValue,
+          installments: payment.installments,
+          userId: payment.userId,
+          status: payment.status ? "Aberto" : "Fechado"
         })
       })
 
-      setUser(users);
+      setPayments(paymentArray);
   })
   .catch((error) => {
-    
     console.log(error);
-    //let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
-    //toast.error(mensagemErro);
   })}
+
   //Toda vez que roda a aplica
   //consumindo API com axios
   useEffect(()=>{
-    
-
-    buscarUsuario();
+    buscarPagamentos();
       },[])
 
-    async function excluirUser(id){
-      const response = await api.delete(`/users/${id}`).then((response) => {
-        console.log(response);
-        
+ 
 
-        buscarUsuario()
+    async function excluirPagamento(id){
+      const response = await api.delete(`/payment/${id}`).then((response) => {
+        console.log(response);
+        buscarPagamentos()
     })
     
-    toast.success("Usúario Deletado");
-      
-      // envia o formulário
-    
+    toast.success("Pagamento Deletado");    
   };    
 
   return (
@@ -55,24 +56,30 @@ export default function UserList() {
         <thead>
           <tr>
             <th className="text-left font-bold p-2">Nome</th>
-            <th className="text-left font-bold p-2">E-mail</th>
+            <th className="text-left font-bold p-2">Valor Total</th>
+            <th className="text-left font-bold p-2">Valor de Entrada</th>
+            <th className="text-left font-bold p-2">N: Parcelas</th>
+            <th className="text-left font-bold p-2">Situação</th>
             <th className="text-left font-bold p-2">Ações</th>
           </tr>
         </thead>
         <tbody>
-          {user.map((user) => (
-            <tr key={user.id}>
-              <td className="p-2">{user.name}</td>
-              <td className="p-2">{user.email}</td>
+          {payments.map((payment) => (
+            <tr key={payment.id}>
+              <td className="p-2">{payment.name}</td>
+              <td className="p-2">{payment.totalValue}</td>
+              <td className="p-2">{payment.entryValue}</td>
+              <td className="p-2">{payment.installments}</td>
+              <td className="p-2">{payment.status}</td>
               <td className="p-2">
                 <Link
-                  to={`/users/${user.id}/edit`}
+                  to={`/users/${payment.id}/edit`}
                   className="text-blue-600 hover:underline"
                 >
                   Editar
                 </Link>
                 {" | "}
-                <button className="text-red-600 hover:underline" onClick={() => excluirUser(user.id)}>Excluir</button>
+                <button className="text-red-600 hover:underline" onClick={() => excluirPagamento(payment.id)}>Excluir</button>
                 
               </td>
             </tr>
