@@ -1,11 +1,13 @@
 import api from '../services/api';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import TextMask from 'react-text-mask';
 import { toast } from "react-toastify";
 import './style.css';
 
 const FormCadastroCliente = () => {
+  const {id} = useParams();
   const [email, setEmail] = useState("");
   const [data, setData] = useState("");
   const [nome, setNome] = useState("");
@@ -18,37 +20,98 @@ const FormCadastroCliente = () => {
   const [estado, setEstado] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
+  const [idEndereco, setIdEndereco] =  useState('');
 
   async function criarUsuario(){
-    
-    const response = await api.post("/users",{
-      "user": {
-           "name": nome,
-           "email": email,
-           "cpf": cpf,
-           "phone": contato,
-           "birthDate": data
-       },
-       "address": {
-           "zipCode": cep,
-           "city": cidade,
-           "state": estado,
-           "street": rua,
-           "numberHome": parseInt(numero)
-       }
-   }).then((response) => {
-      console.log(response);
-      toast.success(response.data.message);
-  })
-  .catch((error) => {
-    
-    console.log(error);
-    let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
-    toast.error(mensagemErro);
-  })
-  
+    if(!id){
+      const response = await api.post("/users",{
+        "user": {
+            "name": nome,
+            "email": email,
+            "cpf": cpf,
+            "phone": contato,
+            "birthDate": data
+        },
+        "address": {
+            "zipCode": cep,
+            "city": cidade,
+            "state": estado,
+            "street": rua,
+            "numberHome": parseInt(numero)
+        }
+    }).then((response) => {
+        console.log(response);
+        toast.success(response.data.message);
+    })
+    .catch((error) => {
+      
+      console.log(error);
+      let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
+      toast.error(mensagemErro);
+    })
+    }else{
+    const response = await api.patch(`/users/${id}`,{
+            "name": nome,
+            "email": email,
+            "cpf": cpf,
+            "phone": contato,
+            "birthDate": data
+    }).then((response) => {
+        console.log(response);
+        toast.success(response.data.message);
+
+        const responseEndereco = api.patch(`/address/${idEndereco}`,{
+          "zipCode": cep,
+          "city": cidade,
+          "state": estado,
+          "street": rua,
+          "numberHome": parseInt(numero)
+          
+        }).then((response) => {
+          console.log(response);
+          toast.success(response.data.message);
+        })
+        .catch((error) => {
+        console.log(error);
+        let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
+        toast.error(mensagemErro);
+        })
+        
+    })
+    .catch((error) => {
+      console.log(error);
+      let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
+      toast.error(mensagemErro);
+    })
+    }
   }
-  
+
+  async function buscarUsuario(){
+    const response = await api.get(`/users/${id}`).then((response) => {
+        console.log(response);
+        let dados = response.data.users;
+        let endereco = response.data.users.Address[0];
+        setNome(dados.name);
+        setCpf(dados.cpf);
+        setData(dados.birthDate);
+        
+        setcontato(dados.phone);
+        setEmail(dados.email);
+
+        setNumero(endereco.numberHome);
+        setRua(endereco.street);
+        setEstado(endereco.state);
+        setCidade(endereco.city);
+        setCep(endereco.zipCode);
+        setIdEndereco(endereco.id);
+      })
+    
+      //setUser(users);
+  }
+ 
+  useEffect(()=>{
+    buscarUsuario();
+  },[])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,21 +121,6 @@ const FormCadastroCliente = () => {
     // envia o formulário
   };
 
-  const handleChangeCidade = (event) => {
-    setCidade(event.target.value);
-  };
-
-  const handleChangeEstado = (event) => {
-    setEstado(event.target.value);
-  };
-
-  const handleChangeRua = (event) => {
-    setRua(event.target.value);
-  };
-
-  const handleChangeNumero = (event) => {
-    setNumero(event.target.value);
-  };
 
   const handleChangeCep = async (event) => {
     setCep(event.target.value);
@@ -184,7 +232,7 @@ const FormCadastroCliente = () => {
         name="cep"
         placeholder="44790-000"
         value={cep}
-        onChange={handleChangeCep}
+        onChange={(event) => {setCep(event.target.value)}}
         mask={[/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
         guide={true}
         placeholderChar={'\u2000'}
@@ -200,7 +248,7 @@ const FormCadastroCliente = () => {
         name="cidade"
         placeholder="Campo Formoso"
         value={cidade}
-        onChange={handleChangeCidade}
+        onChange={(event) => {setCidade(event.target.value)}}
       />
       <label className="text-gray-700 font-bold" htmlFor="estado">
       Estado:
@@ -213,7 +261,7 @@ const FormCadastroCliente = () => {
         name="estado"
         value={estado}
         placeholder="Bahia"
-        onChange={handleChangeEstado}
+        onChange={(event) => {setEstado(event.target.value)}}
       />
       <label className="text-gray-700 font-bold" htmlFor="rua">
         Rua:
@@ -224,7 +272,7 @@ const FormCadastroCliente = () => {
           id="rua"
           name="rua"
           value={rua}
-          onChange={handleChangeRua}
+          onChange={(event) => {setRua(event.target.value)}}
           placeholder="Rua dos bobos"
       />
       <label className="text-gray-700 font-bold" htmlFor="numero">
@@ -237,7 +285,7 @@ const FormCadastroCliente = () => {
         name="numero"
         placeholder="0"
         value={numero}
-        onChange={handleChangeNumero}
+        onChange={(event) => {setNumero(event.target.value)}}
     />
     </div>
 

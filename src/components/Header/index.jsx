@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import payLogo from '../../assets/pay.svg'
+import payLogo from '../../assets/Pagamentos.png'
 export default function Sidebar() {
     
     return (
@@ -9,12 +9,7 @@ export default function Sidebar() {
             <div className="flex flex-col h-screen p-3 bg-blue-900 shadow w-30">
                 <div className="space-y-3">
                     <div className="flex items-center">
-                     <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 11.1111C73.6487 11.1111 92.5 29.9624 92.5 53.6111C92.5 77.2598 73.6487 96.1111 50 96.1111C26.3513 96.1111 7.5 77.2598 7.5 53.6111C7.5 29.9624 26.3513 11.1111 50 11.1111ZM50 13.8889C26.5019 13.8889 7.5 32.3898 7.5 53.6111C7.5 74.8323 26.5019 93.3333 50 93.3333C73.4981 93.3333 92.5 74.8323 92.5 53.6111C92.5 32.3898 73.4981 13.8889 50 13.8889Z" fill="#007AFF"/>
-                            <path d="M38.3333 28.3333L61.6667 28.3333L61.6667 50L38.3333 50L38.3333 28.3333ZM45.8333 32.5L54.1667 32.5L54.1667 45.8333L45.8333 45.8333L45.8333 32.5Z" fill="#FFFFFF"/>
-                            <path d="M38.3333 53.3333L61.6667 53.3333L61.6667 75L38.3333 75L38.3333 53.3333ZM45.8333 57.5L54.1667 57.5L54.1667 70.8333L45.8333 70.8333L45.8333 57.5Z" fill="#FFFFFF"/>
-                            <text x="50" y="84" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#FFFFFF">Pagamentos</text>
-                        </svg>
+                     <img src={payLogo}  width="150px" alt="" srcset="" />
                     </div>
                     <div className="flex-1 text-white">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">

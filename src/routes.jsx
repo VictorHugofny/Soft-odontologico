@@ -17,8 +17,10 @@ function RoutesAPP(){
                 <Route path="/Home" element={<Home/>}/>
                 <Route path="/RegisterPayment" element={<RegisterPayment/>}/>
                 <Route path="/RegisterUser" element={<RegisterUser/>}/>
+                <Route path="/RegisterUser/:id" element={<RegisterUser/>}/>
                 <Route path="/User" element={<User/>}/>
                 <Route path="/Payments" element={<Payments/>}/>
+                <Route path="/RegisterPayment/:id" element={<RegisterPayment/>}/>
             </Routes>
             </div>
         </BrowserRouter>

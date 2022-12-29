@@ -73,7 +73,7 @@ export default function UserList() {
               <td className="p-2">{payment.status}</td>
               <td className="p-2">
                 <Link
-                  to={`/users/${payment.id}/edit`}
+                  to={`/RegisterPayment/${payment.id}`}
                   className="text-blue-600 hover:underline"
                 >
                   Editar

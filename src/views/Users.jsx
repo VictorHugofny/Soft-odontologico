@@ -56,8 +56,7 @@ export default function UserList() {
               <td className="p-2">{user.name}</td>
               <td className="p-2">{user.email}</td>
               <td className="p-2">
-                <Link
-                  to={`/users/${user.id}/edit`}
+                <Link to ={`/RegisterUser/${user.id}`}
                   className="text-blue-600 hover:underline"
                 >
                   Editar
