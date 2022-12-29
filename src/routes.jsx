@@ -20,7 +20,7 @@ function RoutesAPP(){
      
     return(
         <BrowserRouter>
-            <div className="flex">
+            <div>
             
             <Header/>
             <Routes>
