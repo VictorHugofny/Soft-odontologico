@@ -102,12 +102,7 @@ const FormCadastroPagamento = () => {
   }
   else if(id){
     const response = await api.patch(`/payments/${id}`,{
-        "totalValue": parseInt(valorTotal),
-        "entryValue":  parseInt(entrada),
         "status": situacao == "true" ? true : false,
-        "installments":  parseInt(qtdParcelas),
-        "userId": user,
-        //"expireAt": dataVencimento
     }).then((response) => {
         //console.log(response);
         toast.success(response.data.message);
