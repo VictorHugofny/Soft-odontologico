@@ -12,11 +12,11 @@ import PrivateRoute from "./components/PrivateRoute";
 function RoutesAPP(){
     const [isAuthenticated, setLoggedin] = useState(null);
 
-    useEffect(()=>{
-        console.log("teste 2")
-        setLoggedin(localStorage.getItem('authenticated'));
-    },[])
-
+    setTimeout(() => {
+        if(isAuthenticated == null){
+            setLoggedin(localStorage.getItem('authenticated'));
+        }
+    }, 4000);
      
     return(
         <BrowserRouter>
