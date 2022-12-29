@@ -16,7 +16,7 @@ function RoutesAPP(){
         if(isAuthenticated == null){
             setLoggedin(localStorage.getItem('authenticated'));
         }
-    }, 4000);
+    }, 3000);
      
     return(
         <BrowserRouter>
