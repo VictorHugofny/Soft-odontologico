@@ -12,7 +12,7 @@ function LoginForm() {
 
   useEffect(()=>{
     console.log(logado);
-  },[navigateTo])
+  },[logado])
 
   async function logar(){
     const response = await api.post("/login",{
