@@ -9,7 +9,7 @@ export default function UserList() {
 
   async function buscarPagamentos(){
     const response = await api.get("/payments").then((response) => {
-      console.log(response.data)
+      //console.log(response.data)
       let paymentArray = [];
 
       response.data.paymentData.forEach(payment => {
@@ -27,7 +27,7 @@ export default function UserList() {
       setPayments(paymentArray);
   })
   .catch((error) => {
-    console.log(error);
+    //console.log(error);
   })}
 
   //Toda vez que roda a aplica
@@ -40,7 +40,7 @@ export default function UserList() {
 
     async function excluirPagamento(id){
       const response = await api.delete(`/payment/${id}`).then((response) => {
-        console.log(response);
+        //console.log(response);
         buscarPagamentos()
     })
     

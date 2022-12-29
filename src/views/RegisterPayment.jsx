@@ -15,25 +15,29 @@ const FormCadastroPagamento = () => {
   const [user, setUser] = useState([]);
 
   async function buscarPagamentos(){
-    const response = await api.get(`/payments/${id}`).then((response) => {
-      let dados = response.data.paymentData;
-      let usuario = dados.user;
+    if(id){
+      const response = await api.get(`/payments/${id}`).then((response) => {
+        let dados = response.data.paymentData;
+        let usuario = dados.user;
 
-      //convertendo o formato da data para Americano
-      let dataFormatada = dados.expireAt.substring(0,dados.expireAt.indexOf("T")).split("-");
-      let dataFinal = dataFormatada[0]+"-"+dataFormatada[1]+"-"+dataFormatada[2];
+        //convertendo o formato da data para Americano
+        let dataFormatada = dados.expireAt.substring(0,dados.expireAt.indexOf("T")).split("-");
+        let dataFinal = dataFormatada[0]+"-"+dataFormatada[1]+"-"+dataFormatada[2];
 
-      setValorTotal(dados.totalValue);
-      setEntrada(dados.entryValue);
-      setQtdParcelas(dados.installments);
-      setDataVencimento(dataFinal);
-      setCliente(dados.userId);
-      setSituacao(dados.status);
-      setUser([{id: dados.userId, nome: usuario.name}]);
-  })
+        setValorTotal(dados.totalValue);
+        setEntrada(dados.entryValue);
+        setQtdParcelas(dados.installments);
+        setDataVencimento(dataFinal);
+        setCliente(dados.userId);
+        setSituacao(dados.status);
+        setUser([{id: dados.userId, nome: usuario.name}]);
+    })
+
   .catch((error) => {
-    console.log(error);
+    //console.log(error);
   })}
+
+}
 
   useEffect(()=>{
     if(valorTotal && qtdParcelas){
@@ -59,7 +63,7 @@ const FormCadastroPagamento = () => {
       setUser(users);
   })
   .catch((error) => {
-    console.log(error);
+    //console.log(error);
   })}
 
   function calcularEntrada(total, parcelas){
@@ -81,17 +85,17 @@ const FormCadastroPagamento = () => {
       "userId": user,
       "expireAt": dataVencimento
   }).then((response) => {
-      console.log(response);
+      //console.log(response);
       toast.success(response.data.message);
   })
   .catch((error) => {
     
-    console.log(error);
+    //console.log(error);
     let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
     toast.error(mensagemErro);
   })
   }
-  else{
+  else if(id){
     const response = await api.patch(`/payments/${id}`,{
         "totalValue": parseInt(valorTotal),
         "entryValue":  parseInt(entrada),
@@ -100,12 +104,12 @@ const FormCadastroPagamento = () => {
         "userId": user,
         //"expireAt": dataVencimento
     }).then((response) => {
-        console.log(response);
+        //console.log(response);
         toast.success(response.data.message);
     })
     .catch((error) => {
       
-      console.log(error);
+      //console.log(error);
       let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
       toast.error(mensagemErro);
     })

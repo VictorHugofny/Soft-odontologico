@@ -40,16 +40,16 @@ const FormCadastroCliente = () => {
             "numberHome": parseInt(numero)
         }
     }).then((response) => {
-        console.log(response);
+        //console.log(response);
         toast.success(response.data.message);
     })
     .catch((error) => {
       
-      console.log(error);
+      //console.log(error);
       let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
       toast.error(mensagemErro);
     })
-    }else{
+    }else if(id){
     const response = await api.patch(`/users/${id}`,{
             "name": nome,
             "email": email,
@@ -57,7 +57,7 @@ const FormCadastroCliente = () => {
             "phone": contato,
             "birthDate": data
     }).then((response) => {
-        console.log(response);
+        //console.log(response);
         toast.success(response.data.message);
 
         const responseEndereco = api.patch(`/address/${idEndereco}`,{
@@ -68,18 +68,18 @@ const FormCadastroCliente = () => {
           "numberHome": parseInt(numero)
           
         }).then((response) => {
-          console.log(response);
+          //console.log(response);
           toast.success(response.data.message);
         })
         .catch((error) => {
-        console.log(error);
+        //console.log(error);
         let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
         toast.error(mensagemErro);
         })
         
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
       let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
       toast.error(mensagemErro);
     })
@@ -87,8 +87,9 @@ const FormCadastroCliente = () => {
   }
 
   async function buscarUsuario(){
+    if(id){
     const response = await api.get(`/users/${id}`).then((response) => {
-        console.log(response);
+        //console.log(response);
         let dados = response.data.users;
         let endereco = response.data.users.Address[0];
         setNome(dados.name);
@@ -105,7 +106,7 @@ const FormCadastroCliente = () => {
         setCep(endereco.zipCode);
         setIdEndereco(endereco.id);
       })
-    
+    }
       //setUser(users);
   }
  
@@ -131,7 +132,7 @@ const FormCadastroCliente = () => {
       setEstado(response.data.uf);
       setRua(response.data.logradouro);
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
   };
 

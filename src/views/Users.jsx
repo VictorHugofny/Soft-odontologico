@@ -30,7 +30,7 @@ export default function UserList() {
 
     async function excluirUser(id){
       const response = await api.delete(`/users/${id}`).then((response) => {
-        console.log(response);
+        //console.log(response);
         buscarUsuario()
     })
     
