@@ -11,11 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function RoutesAPP(){
     const [isAuthenticated, setLoggedin] = useState({});
-
-    setTimeout(() => {
-        setLoggedin(localStorage.getItem('authenticated'));
-        console.log(isAuthenticated)
-    }, 1000);
+    
      
     return(
         <BrowserRouter>

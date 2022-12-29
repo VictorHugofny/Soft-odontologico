@@ -10,9 +10,7 @@ function LoginForm() {
   const [senha, setSenha] = useState("");
   const [logado, setLogado] = useState("");
 
-  useEffect(()=>{
-    console.log(logado);
-  },[logado])
+
 
   async function logar(){
     const response = await api.post("/login",{
