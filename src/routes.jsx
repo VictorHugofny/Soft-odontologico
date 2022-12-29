@@ -6,6 +6,8 @@ import RegisterPayment from './views/RegisterPayment';
 import RegisterUser from './views/RegisterUser';
 import User from './views/Users';
 import Payments from './views/Payments';
+import Login from './views/Login';
+
 function RoutesAPP(){
     return(
         <BrowserRouter>
@@ -14,6 +16,7 @@ function RoutesAPP(){
             
             <Header/>
             <Routes>
+                <Route path="/Login" element={<Login/>}/>
                 <Route path="/Home" element={<Home/>}/>
                 <Route path="/RegisterPayment" element={<RegisterPayment/>}/>
                 <Route path="/RegisterUser" element={<RegisterUser/>}/>
