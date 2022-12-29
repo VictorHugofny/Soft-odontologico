@@ -128,9 +128,9 @@ const FormCadastroPagamento = () => {
   };
 
   return (
-    <form className="w-full max-w-sm flex-col align-items: flex-start" onSubmit={handleSubmit}>
+    <form className="mx-20 my-10 w-full max-w-sm flex-col align-items: flex-start" onSubmit={handleSubmit}>
       <label
-        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="cliente"
       >
         Cliente
@@ -156,7 +156,7 @@ const FormCadastroPagamento = () => {
       </select>
 
       <label
-        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="valor-total">
         Valor total
       </label>
@@ -173,7 +173,7 @@ const FormCadastroPagamento = () => {
         }}
       />
       <label
-        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="qtd-parcelas">
         Quantidade de parcelas
       </label>
@@ -189,7 +189,7 @@ const FormCadastroPagamento = () => {
       />
   
       <label
-        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="entrada">
         Entrada
       </label>
@@ -206,7 +206,7 @@ const FormCadastroPagamento = () => {
       />
 
       <label
-        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="data-vencimento"
       >
         Data de vencimento
@@ -224,7 +224,7 @@ const FormCadastroPagamento = () => {
       />
 
       <label
-        className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="cliente"
       >
         Situação

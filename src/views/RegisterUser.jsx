@@ -138,10 +138,10 @@ const FormCadastroCliente = () => {
 
 
   return (
-    <form className="w-full max-w-sm flex-col align-items: flex-start" onSubmit={handleSubmit}>
+    <form className="w-full max-w-sm flex-col align-items: flex-start mx-20 my-10" onSubmit={handleSubmit}>
         
           <label
-            className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+            className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
             for="nome"
           >
             Nome completo
@@ -157,7 +157,7 @@ const FormCadastroCliente = () => {
           />
       
           <label
-            className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+            className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
             for="cpf"
           >
             CPF
@@ -172,7 +172,7 @@ const FormCadastroCliente = () => {
           />
       
     <label
-      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+      className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
       for="data-nascimento"
       
     >
@@ -187,7 +187,7 @@ const FormCadastroCliente = () => {
     />
     
     <label
-      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+      className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
       for="contato"
     >
       Contato
@@ -202,7 +202,7 @@ const FormCadastroCliente = () => {
     />
 
     <label
-      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+      className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
       for="email"
     >
       E-mail

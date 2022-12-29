@@ -13,14 +13,12 @@ function RoutesAPP(){
     const [isAuthenticated, setLoggedin] = useState(null);
 
     setTimeout(() => {
-        if(isAuthenticated == null){
-            setLoggedin(localStorage.getItem('authenticated'));
-        }
-    }, 3000);
+        setLoggedin(localStorage.getItem('authenticated'));
+    }, 1000);
      
     return(
         <BrowserRouter>
-            <div>
+            <div className="flex">
             
             <Header/>
             <Routes>
