@@ -102,7 +102,7 @@ const FormCadastroPagamento = () => {
   }
   else if(id){
     const response = await api.patch(`/payments/${id}`,{
-        "status": situacao == "true" ? true : false,
+        "status": situacao == "true" ? true : false
     }).then((response) => {
         //console.log(response);
         toast.success(response.data.message);
