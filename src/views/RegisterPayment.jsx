@@ -107,14 +107,10 @@ const FormCadastroPagamento = () => {
         "status": situacao == "true" ? true : false,
         "installments":  parseInt(qtdParcelas),
         "userId": user,
-        //"expireAt": dataVencimento
     }).then((response) => {
-        //console.log(response);
         toast.success(response.data.message);
     })
     .catch((error) => {
-      
-      //console.log(error);
       let mensagemErro = `${error.response.data.message}, faça os ajustes e tente novamente`;
       toast.error(mensagemErro);
     })

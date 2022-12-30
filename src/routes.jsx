@@ -8,14 +8,14 @@ import User from './views/Users';
 import Payments from './views/Payments';
 import Login from './views/Login';
 import PrivateRoute from "./components/PrivateRoute";
-
+import './style.css';
 function RoutesAPP(){
     const [isAuthenticated, setLoggedin] = useState({});
     
      
     return(
         <BrowserRouter>
-            <div className="flex">
+            <div className="rotas">
             
             <Header/>
             <Routes>
