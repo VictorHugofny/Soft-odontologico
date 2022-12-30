@@ -125,6 +125,7 @@ const FormCadastroPagamento = () => {
 
   return (
     <form className="mx-20 my-10 w-full max-w-sm flex-col align-items: flex-start" onSubmit={handleSubmit}>
+      <h2 className="text-2xl font-bold mb-4">Cadastro/edição de pagamentos</h2>
       <label
         className="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4"
         for="cliente"

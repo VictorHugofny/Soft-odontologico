@@ -50,7 +50,7 @@ export default function UserList() {
   return (
     
     <div className="px-4 py-6">
-      <h2 className="text-2xl font-bold mb-4">Usuários</h2>
+      <h2 className="text-2xl font-bold mb-4">Pagamentos</h2>
 
       <table className="w-full text-sm">
         <thead>
