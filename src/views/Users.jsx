@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import api from '../services/api';
 import { useEffect, useState} from 'react';
 import { toast } from "react-toastify";
+import "./table.css"
 
 export default function UserList() {
   let users = [];
@@ -39,23 +40,23 @@ export default function UserList() {
 
   return (
     
-    <div className="px-4 py-6">
+    <div className="px-4 py-6 overflow-hidden">
       <h2 className="text-2xl font-bold mb-4">Usuários</h2>
 
-      <table className="w-full text-sm">
-        <thead>
-          <tr>
-            <th className="text-left font-bold p-2">Nome</th>
-            <th className="text-left font-bold p-2">E-mail</th>
-            <th className="text-left font-bold p-2">Ações</th>
+      <table className="table text-black-400 border-separate space-y-3 text-sm">
+        <thead className= "bg-blue-800 text-gray-100">
+          <tr className="border border-slate-700">
+            <th className="p-2">Nome</th>
+            <th className="p-2">E-mail</th>
+            <th className="p-2">Ações</th>
           </tr>
         </thead>
         <tbody>
           {user.map((user) => (
-            <tr key={user.id}>
-              <td className="p-2">{user.name}</td>
-              <td className="p-2">{user.email}</td>
-              <td className="p-2">
+            <tr key={user.id} className = "bg-blue-300">
+              <td className="p-2 text-black-800">{user.name}</td>
+              <td className="p-2 text-black-800">{user.email}</td>
+              <td className="p-2 text-black-800">
                 <Link to ={`/RegisterUser/${user.id}`}
                   className="text-blue-600 hover:underline"
                 >
